@@ -3,6 +3,7 @@ import CreateProductService from "../Services/CreateProductService";
 import DeleteProductService from "../Services/DeleteProductService";
 import ListProductService from "../Services/ListProductService";
 import ShowProductService from "../Services/ShowProductService";
+import UpdateProductService from "../Services/UpdateProductService";
 
 export default class ProductController {
   // essa classe NÃÃÃÃÃO tem regra de negócio
@@ -41,6 +42,17 @@ export default class ProductController {
     let { id } = request.params
     let showProduct = new ShowProductService();
     let product = await showProduct.execute({ id })
+
+    return response.json(product)
+  }
+
+  public async update(request: Request, response: Response): Promise<Response> {
+    // id vem da url
+    let { id } = request.params
+    // os valores vem do corpo da requisição
+    let { name, price, quantity } = request.body
+    let updateService = new UpdateProductService();
+    let product = updateService.execute({id, name, price, quantity})
 
     return response.json(product)
   }
