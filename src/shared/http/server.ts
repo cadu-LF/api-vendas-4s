@@ -5,8 +5,12 @@ import routes from './routes/routes'
 //importar e executa conexão com o BD
 import '../typeorm'
 
+
 // cria um server express
 let servidor = express();
+
+//servidor suporta convertar dados para JSON
+servidor.use(express.json())
 
 // associa a rota ao servidor
 servidor.use(routes)

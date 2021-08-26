@@ -5,6 +5,7 @@
   "username": "postgres",
   "password": "C1a2d3u4",
   "database": "api-vendas",
+  "entities": ["./src/modules/**/typeorm/entities/*"],
   "migrations": [
     "./src/shared/typeorm/migrations/*.ts" 
   ],

@@ -33,12 +33,15 @@ export class CreateProducts1629160755639 implements MigrationInterface {
                 },
                 {
                     name: 'created_at',
-                    type: 'timestamp with time zone' // registra o momento em 
+                    type: 'timestamp with time zone', // registra o momento em 
                     //que o registro foi criado de acordo com o horário do SO
+                    default: 'now()'
                 },
                 {
                     name: 'updated_at',
-                    type: 'timestamp with time zone'
+                    type: 'timestamp with time zone',
+                    // define valor default para esse campo
+                    default: 'now()'
                 }
             ]
         }))
