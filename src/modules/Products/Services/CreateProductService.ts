@@ -19,7 +19,7 @@ export default class CreateProductService {
     // recupera o repository do produto
     let productReposiory = getCustomRepository(ProductRepository);
     // verifica se o produto já existe
-    let productExist = await productReposiory.findByName(name).then
+    let productExist = await productReposiory.findByName(name)
 
     if(productExist){
       // não podemos cadastrar

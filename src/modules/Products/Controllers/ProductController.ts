@@ -52,7 +52,7 @@ export default class ProductController {
     // os valores vem do corpo da requisição
     let { name, price, quantity } = request.body
     let updateService = new UpdateProductService();
-    let product = updateService.execute({id, name, price, quantity})
+    let product = await updateService.execute({id, name, price, quantity})
 
     return response.json(product)
   }
