@@ -30,8 +30,25 @@ celebrate({
 }),
 productController.create)
 // rota de deleção
-productRouter.delete('/:id', productController.delete)
+productRouter.delete('/:id',
+celebrate({
+  [Segments.PARAMS]: {
+    id: Joi.string().uuid().required(),
+  }
+}),
+productController.delete)
 // rota de atualização
-productRouter.put('/:id', productController.update)
+productRouter.put('/:id',
+celebrate({
+  [Segments.PARAMS]: {
+    id: Joi.string().uuid().required(),
+  },
+  [Segments.BODY]: {
+    name: Joi.string().required(),
+    price: Joi.number().precision(2).required(),
+    quantity: Joi.number().required()
+  }
+}),
+productController.update)
 
 export default productRouter
