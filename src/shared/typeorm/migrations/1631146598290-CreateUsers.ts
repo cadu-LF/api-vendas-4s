@@ -1,21 +1,14 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-// para gerar a migration:
-// yarn typeorm migration:create -n CreateUsers
-export class CreateProducts1629160755639 implements MigrationInterface {
+export class CreateUsers1631146598290 implements MigrationInterface {
 
-    // executado quando for criar a table
-    // retorna uma Promisse(promessa de um retorno)
     public async up(queryRunner: QueryRunner): Promise<void> {
-
-        // criar tabela no BD
-        // envia um pedido e só volta a executar depois de uma resposta
         await queryRunner.createTable(new Table({
-            name: 'products',
+            name: 'users',
             columns: [
                 {
                     name: 'id',
-                    type: 'uuid', // identificador único
+                    type: 'uuid', // identificador único e universal
                     isPrimary: true,
                     generationStrategy: 'uuid', // vai criar altomaticamente em uuid
                     default: 'uuid_generate_v4()' // algoritmo de geração de valores
@@ -25,13 +18,18 @@ export class CreateProducts1629160755639 implements MigrationInterface {
                     type: 'varchar'
                 },
                 {
-                    name: 'price',
-                    type: 'decimal',
-                    scale: 2
+                    name: 'email',
+                    type: 'varchar',
+                    isUnique: true // o email tem que ser único
                 },
                 {
-                    name: 'quantity',
-                    type: 'int'
+                    name: 'password',
+                    type: 'varchar'
+                },
+                {
+                    name: 'avatar',
+                    type: 'varchar',
+                    isNullable: true,
                 },
                 {
                     name: 'created_at',
@@ -50,9 +48,6 @@ export class CreateProducts1629160755639 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        // remove a tabela do BD
-        // chamamos um método síncrono
-        await queryRunner.dropTable('products');
     }
 
 }
