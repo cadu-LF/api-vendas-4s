@@ -3,7 +3,7 @@
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 // fala que representa a tabela products
-@Entity('user')
+@Entity('users')
 export default class User {
 
   // fala que é um pk com valor gerado

@@ -2,6 +2,8 @@ import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
 // para gerar a migration:
 // yarn typeorm migration:create -n CreateUsers
+// para executar a migration:
+// yarn typeorm migration:run
 export class CreateProducts1629160755639 implements MigrationInterface {
 
     // executado quando for criar a table
