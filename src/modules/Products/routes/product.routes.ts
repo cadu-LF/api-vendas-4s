@@ -2,6 +2,7 @@ import { Router } from 'express'
 
 import ProductController from '../Controllers/ProductController'
 import {celebrate, Joi, Segments} from 'celebrate'
+import isAuthenticated from '../../../shared/middleware/isAuthenticated'
 
 //criação da rota do produto
 let productRouter = Router()
@@ -9,7 +10,7 @@ let productRouter = Router()
 let productController = new ProductController()
 // rota de consulta
 // não tem o que tratar
-productRouter.get('/', productController.index) 
+productRouter.get('/',isAuthenticated, productController.index) 
 // tratar a obrigatoriedade de ter um id
 productRouter.get('/:id',
 celebrate({

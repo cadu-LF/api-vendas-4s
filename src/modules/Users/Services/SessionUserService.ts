@@ -4,6 +4,7 @@ import AppError from "../../../shared/Errors/AppErrors";
 import User from "../typeorm/Entities/User";
 import UserRepository from "../typeorm/Repositories/UserRepository";
 import {sign} from 'jsonwebtoken'
+import authConfig from '../../../config/auth'
 
 // interface para entrada de dados
 interface IRequest {
@@ -42,9 +43,9 @@ class SessionUserService {
     // 3. Assinatura
 
     //sign ({}, 'chave de criptografia', {retorno})
-    let token = sign({}, 'ca8ca365728f56417a2d3b6393b9c1ae', {
+    let token = sign({}, authConfig.jwt.secret, {
       subject: user.id,
-      expiresIn: '1d'
+      expiresIn: authConfig.jwt.expiresIn
     })
 
     return {
