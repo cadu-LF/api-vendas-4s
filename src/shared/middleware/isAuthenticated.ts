@@ -41,10 +41,15 @@ export default function isAuthenticated(
        */
       let decodedToken = verify(token, authConfig.jwt.secret)
 
-      const {sub} =  decodedToken as ITokenPayload // pega apenas o sub do decodedToken
+      // pega apenas o sub(id do usuário) do decodedToken
+      const {sub} =  decodedToken as ITokenPayload 
 
       // vamos alterar as informações da request, 
       // pq a requisição deve conter o id do usuário que está no sub
+      request.user = {
+        id: sub
+      }
+
       return next() //deixa a API ser consumida
     }
     catch { // lança erro se o token não for válido

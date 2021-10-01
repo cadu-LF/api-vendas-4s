@@ -31,6 +31,9 @@ export default class ProductController {
   }
 
   public async index(request: Request, response: Response): Promise<Response> {
+    // usar request.user.id para pegar o id do cabeçalho da requisição
+    console.log(`ID do usuário: ${request.user.id}`)
+    
     let listProduct = new ListProductService();
     let products = await listProduct.execute()
 

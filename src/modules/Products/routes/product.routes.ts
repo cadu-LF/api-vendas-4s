@@ -10,9 +10,9 @@ let productRouter = Router()
 let productController = new ProductController()
 // rota de consulta
 // não tem o que tratar
-productRouter.get('/',isAuthenticated, productController.index) 
+productRouter.get('/', isAuthenticated, productController.index) 
 // tratar a obrigatoriedade de ter um id
-productRouter.get('/:id',
+productRouter.get('/:id', isAuthenticated,
 celebrate({
   [Segments.PARAMS]: {
     id: Joi.string().uuid().required()
@@ -21,7 +21,7 @@ celebrate({
 productController.show)
 // rota de inserção
 // tratar o erro de exigir o corpo da requisição
-productRouter.post('/',
+productRouter.post('/', isAuthenticated,
 celebrate({
   [Segments.BODY]: {
     name: Joi.string().required(),
@@ -31,7 +31,7 @@ celebrate({
 }),
 productController.create)
 // rota de deleção
-productRouter.delete('/:id',
+productRouter.delete('/:id', isAuthenticated,
 celebrate({
   [Segments.PARAMS]: {
     id: Joi.string().uuid().required(),
@@ -39,7 +39,7 @@ celebrate({
 }),
 productController.delete)
 // rota de atualização
-productRouter.put('/:id',
+productRouter.put('/:id', isAuthenticated,  
 celebrate({
   [Segments.PARAMS]: {
     id: Joi.string().uuid().required(),
